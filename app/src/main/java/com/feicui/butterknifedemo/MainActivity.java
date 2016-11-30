@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // 绑定MainActivity
         bind = ButterKnife.bind(this);
         list = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
@@ -46,20 +47,20 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         lvList.setAdapter(adapter);
     }
-
+    // 点击事件
     @OnClick(R.id.btn_show)
     public void setTextFun() {
         textView.setText(name);
     }
 
-
+    // 解除绑定
     @Override
     protected void onDestroy() {
         super.onDestroy();
         bind.unbind();
     }
 
-
+    // 点击item事件
     @OnItemClick(R.id.lv_list)
     public void onClick(int position) {
         Toast.makeText(this, "点击第"+position+"条", Toast.LENGTH_SHORT).show();
